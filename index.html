@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forkcast</title>
+<meta name="description" content="Settle where the family eats tonight, then order it on DoorDash or Uber Eats.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ff5a2c'/%3E%3Cpath d='M11 7v7a3 3 0 0 0 6 0V7M14 7v18M21 7c-2 2-2 7 0 9v9' stroke='%23fff' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="logo" data-icon="utensils"></span>
+      <span class="brand-name">Forkcast</span>
+    </div>
+    <p class="tagline">Ends the "where should we eat?" argument. Then hands you off to DoorDash or Uber Eats.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel" id="crewPanel">
+    <div class="panel-head">
+      <div class="title"><span class="step">1</span><h2>Who's eating?</h2></div>
+      <button class="btn ghost sm" id="sampleBtn" type="button"><span data-icon="users"></span>Try a sample family</button>
+    </div>
+    <p class="hint">Add what each person usually likes and what they won't eat. Food types, cuisines, or specific places all work. A like moves a place up the list. One nope rules it out.</p>
+    <div class="people" id="people"></div>
+  </section>
+
+  <section class="panel" id="wherePanel">
+    <div class="panel-head">
+      <div class="title"><span class="step">2</span><h2>Where are you?</h2></div>
+      <div class="weather" id="weather" hidden></div>
+    </div>
+    <div class="where">
+      <button class="btn soft" id="geoBtn" type="button"><span data-icon="crosshair"></span>Use my location</button>
+      <span class="or">or</span>
+      <form id="locForm" class="loc-form">
+        <input id="locInput" type="text" placeholder="ZIP code or city" autocomplete="postal-code" aria-label="ZIP code or city">
+        <button class="btn soft" type="submit">Set</button>
+      </form>
+    </div>
+    <div class="loc-status" id="locStatus"></div>
+    <div class="opts">
+      <label class="select-wrap">Within
+        <select id="radius">
+          <option value="1">1 mile</option>
+          <option value="2">2 miles</option>
+          <option value="3">3 miles</option>
+          <option value="5">5 miles</option>
+          <option value="8">8 miles</option>
+        </select>
+      </label>
+      <label class="toggle"><input type="checkbox" id="noFast"><span class="track"></span>Skip fast food</label>
+    </div>
+    <button class="cta" id="decideBtn" type="button"><span data-icon="sparkles"></span>Pick our spot</button>
+  </section>
+
+  <section class="results" id="results" hidden></section>
+</main>
+
+<datalist id="foods"></datalist>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="foot">
+  <p>Forkcast doesn't deliver anything. It picks the place, then sends you to that restaurant on DoorDash or Uber Eats.</p>
+  <p class="src">Restaurants &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> via Overpass &amp; Nominatim &middot; Dish photos from <a href="https://www.themealdb.com" target="_blank" rel="noopener">TheMealDB</a> &middot; Weather by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js?v=4"></script>
+</body>
+</html>
